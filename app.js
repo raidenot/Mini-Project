@@ -39,10 +39,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    connection.query(sql, (error, results) => {
-        if (error) throw error;
-        res.render('index', { title: 'My EJS Page', data: results });
-    });
+    res.render('index', { title: 'My EJS Page', data: results });
 });
 
 
