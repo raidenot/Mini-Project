@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
 host: 'localhost',
 user: 'root',
 password: '',
-database: 'c237_supermarketapp'
+database: ''
 });
 
 connection.connect((err) => {
@@ -39,7 +39,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    
+    connection.query(sql, (error, results) => {
+        if (error) throw error;
+        res.render('index', { title: 'My EJS Page', data: results });
+    });
 });
 
 
